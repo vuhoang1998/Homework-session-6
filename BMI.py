@@ -1,5 +1,7 @@
 # Homework-session-6from flask import Flask,render_template,redirect
 
+from flask import Flask,render_template,redirect
+
 app = Flask(__name__)
 
 
@@ -13,7 +15,7 @@ def techkids():
     return redirect("http://techkids.vn")
 
 @app.route('/BMI/<int: weight>/<int : height>')
-def BMI_caculate(): 
+def BMI_caculate(weight,height):
     BMI = weight * 10000 / (height ** 2)
     if BMI < 16:
         result = "Severely underweight (còi xương)"
@@ -25,8 +27,11 @@ def BMI_caculate():
         result = "Overweight (Thừa cân)"
     else:
         result = "Obese (Béo phì)"
-    return render_template("BMI.html")
+    return render_template("BMI.html",result = result, BMI= BMI)
 
+@app.route('test/<int:x>')
+def test():
+    return render_template('test.html')
 
 
 if __name__ == '__main__':
