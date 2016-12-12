@@ -1,7 +1,4 @@
-# Homework-session-6from flask import Flask,render_template,redirect
-
-from flask import Flask,render_template,redirect
-
+from flask import Flask,render_template,redirect,url_for
 app = Flask(__name__)
 
 
@@ -14,7 +11,7 @@ def hello_world():
 def techkids():
     return redirect("http://techkids.vn")
 
-@app.route('/BMI/<int: weight>/<int : height>')
+@app.route('/BMI/<int:weight>/<int:height>')
 def BMI_caculate(weight,height):
     BMI = weight * 10000 / (height ** 2)
     if BMI < 16:
@@ -29,12 +26,10 @@ def BMI_caculate(weight,height):
         result = "Obese (Béo phì)"
     return render_template("BMI.html",result = result, BMI= BMI)
 
-@app.route('test/<int:x>')
-def test():
-    return render_template('test.html')
-
-
 if __name__ == '__main__':
     app.run()
+
+
+
 
 
